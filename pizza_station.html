@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Station</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .box {
+            background-color: #ffffff;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 15px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .box h4 {
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .box p {
+            font-size: 24px;
+            color: #007bff;
+        }
+
+        .btn {
+            font-weight: bold;
+        }
+
+        .modal-body p {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .modal-header {
+            background-color: #343a40;
+            color: #ffffff;
+        }
+
+        .form-check-label {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Pizza Station</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <!-- Boxes Section -->
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="box">
+                    <h4>Total Sales</h4>
+                    <p>$0.00</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="box">
+                    <h4>Total Orders</h4>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="box">
+                    <h4>Total Deliveries</h4>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="box">
+                    <h4>Weekly Sales</h4>
+                    <p>$0.00</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="box">
+                    <h4>Weekly Orders</h4>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="box">
+                    <h4>Weekly Deliveries</h4>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="box">
+                    <h4>Monthly Sales</h4>
+                    <p>$0.00</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="box">
+                    <h4>Monthly Orders</h4>
+                    <p>0</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="box">
+                    <h4>Monthly Deliveries</h4>
+                    <p>0</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Buttons Section -->
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-6 mb-3">
+                <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#orderManagementModal">Order Management</button>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 mb-3">
+                <button class="btn btn-secondary w-100" data-bs-toggle="modal" data-bs-target="#viewOrdersModal">View Orders</button>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 mb-3">
+                <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#placeOrderModal">Place Order</button>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 mb-3">
+                <button class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#submittedOrdersModal">Submitted Orders</button>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 mb-3">
+                <button class="btn btn-info w-100" data-bs-toggle="modal" data-bs-target="#orderPrepaidModal">Order Prepaid</button>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 mb-3">
+                <button class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#paidOrdersModal">Paid Orders</button>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 mb-3">
+                <button class="btn btn-dark w-100" data-bs-toggle="modal" data-bs-target="#borrowOrdersModal">Borrow Orders</button>
+            </div>
+            <div class="col-lg-3 col-md-4 col-6 mb-3">
+                <button class="btn btn-light w-100" data-bs-toggle="modal" data-bs-target="#foodPandaDeliveredModal">Food Panda Delivered</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Management Modal -->
+    <div class="modal fade" id="orderManagementModal" tabindex="-1" aria-labelledby="orderManagementModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderManagementModalLabel">Order Management</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Select an option to create:</p>
+                    <button class="btn btn-primary w-100 mb-3">Create Simple Order</button>
+                    <button class="btn btn-secondary w-100 mb-3">Create Deal</button>
+                    <button class="btn btn-success w-100">Create Dinner Menu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Orders Modal -->
+    <div class="modal fade" id="viewOrdersModal" tabindex="-1" aria-labelledby="viewOrdersModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewOrdersModalLabel">View Orders</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Here you can view all orders, deals, and menus:</p>
+                    <!-- Add content to view orders, deals, and menus -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Place Order Modal -->
+    <div class="modal fade" id="placeOrderModal" tabindex="-1" aria-labelledby="placeOrderModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="placeOrderModalLabel">Place Order</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Select the items to order:</p>
+                    <!-- Add form for placing an order -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Submitted Orders Modal -->
+    <div class="modal fade" id="submittedOrdersModal" tabindex="-1" aria-labelledby="submittedOrdersModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="submittedOrdersModalLabel">Submitted Orders</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Manage submitted orders:</p>
+                    <!-- Add content for managing submitted orders -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Prepaid Modal -->
+    <div class="modal fade" id="orderPrepaidModal" tabindex="-1" aria-labelledby="orderPrepaidModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderPrepaidModalLabel">Order Prepaid</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Manage prepaid orders:</p>
+                    <!-- Add content for managing prepaid orders -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Paid Orders Modal -->
+    <div class="modal fade" id="paidOrdersModal" tabindex="-1" aria-labelledby="paidOrdersModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="paidOrdersModalLabel">Paid Orders</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>View and manage paid orders:</p>
+                    <!-- Add content for managing paid orders -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Borrow Orders Modal -->
+    <div class="modal fade" id="borrowOrdersModal" tabindex="-1" aria-labelledby="borrowOrdersModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="borrowOrdersModalLabel">Borrow Orders</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Manage borrow orders:</p>
+                    <!-- Add content for managing borrow orders -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Food Panda Delivered Orders Modal -->
+    <div class="modal fade" id="foodPandaDeliveredModal" tabindex="-1" aria-labelledby="foodPandaDeliveredModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="foodPandaDeliveredModalLabel">Food Panda Delivered Orders</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Submit Food Panda delivered orders:</p>
+                    <!-- Add content for Food Panda delivered orders -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
